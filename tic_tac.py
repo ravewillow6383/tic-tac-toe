@@ -137,6 +137,21 @@ def check_rows():
     row_two = board[1][0] == board[1][1] == board[1][2] != '-'
     row_three = board[2][0] == board[2][1] == board[2][2] != '-'
 
+    for j in range(0, 3):
+        full_board = None
+        for i in range(0, 3):
+            if board[j][i] == '-':
+                full_board = False
+                break
+            else:
+                full_board = True
+
+    if full_board == True:
+        display_board
+        print('There are no more spots!')
+        winner = None
+        game_is_still_going = False
+            
     # if winner, change the game is still going on flag
     if row_one or row_two or row_three:
         display_board()
@@ -220,7 +235,7 @@ def check_diagonals():
     if diagonals_one or diagonals_two:
         display_board()
         game_is_still_going = False
-        if board[1][1]== player_one_team:
+        if board[1][1] == player_one_team:
             winner = player_one_name
         elif board[1][1] == player_two_team:
             winner = player_two_name
@@ -254,12 +269,14 @@ def check_for_win():
   
 # ask if player wants to play again
 def play_again():
+    global game_is_still_going
     again_prompt = 'Would you like to play again?'
     again = input(again_prompt)
       
     if again.lower() == 'y' or again.lower() == 'yes':
         board = [['-' for n in range(columns)] for n in range (rows)]
-        play_game()
+        game_is_still_going = True
+        lets_roll()
       
     if again.lower() == 'n' or again.lower() == 'no':
         print(f'Thanks for the game, {player_one_name}.')
@@ -282,13 +299,15 @@ def play_game():
 
     #Handle a winner
     if winner == player_one_name or winner == player_two_name:
-        print(f'They’ve done studies, you know. 60 percent of the time, it works every time. Well done, {player_one_name}')
+        print(f'They’ve done studies, you know. 60 percent of the time, it works every time. Well done, {winner}. You sure nailed your x\'s and o\'s.' )
         play_again()
     # Handle a tie
     if winner != player_one_name and winner != player_two_name:
-        print(f' I\'m pretty sure there\'s a lot more to life than being really, really, ridiculously good at tic-tac-toe. And I plan on finding out what that is. Better luck next time, {player_one_name}')
-        play_again()
+        print(f' I\'m pretty sure there\'s a lot more to life than being really, really, ridiculously good at tic-tac-toe, but that was sure a fine match. {player_one_name}, {player_two_name}, it was a draw. ')
+        play_again
 
+def lets_roll():
+    intro()
+    play_game()
 
-intro()
-play_game()
+lets_roll()

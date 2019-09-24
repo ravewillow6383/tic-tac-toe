@@ -110,7 +110,7 @@ def check_rows():
 
 def check_columns():
     global board, game_is_still_going
-    winning_column = ''
+
     column_one = board[0][0] == board[1][0] == board[2][0] != '-'
     column_two = board[0][1] == board[1][1] == board[2][1] != '-'
     column_three = board[0][2] == board[1][2] == board[2][2] != '-'
@@ -131,6 +131,16 @@ def check_columns():
     return
 
 def check_diagonals():
+    global board, game_is_still_going
+
+    diagonals_one = board[0][0] == board[1][1] == board[2][2] != '-'
+    diagonals_two = board[0][2] == board[1][1] == board[2][0] != '-'
+
+    # if winner, change the game is still going on flag
+    if diagonals_one or diagonals_two:
+        game_is_still_going = False
+        return board[1][1]
+
     return
 
 def check_for_win():

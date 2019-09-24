@@ -1,8 +1,8 @@
 # tic-tac-toe
 
-This is a game played in your command line. I wrote it in python 3. 
+This is a game played in your command line written in Python 3.7.3. 
 
-The game board is diplayed in a 3 X 3 pattern which I build by nesting three lists inside of a list.
+The game board is diplayed in a 3 X 3 pattern of nested lists.
 
 The board spots are labeled left to right, top to bottom. Like so:
 
@@ -13,3 +13,12 @@ The board spots are labeled left to right, top to bottom. Like so:
 7 8 9
 
 This is a two player game. Each player chooses where they would like to place their mark. Once three matching marks are found, either vertically, horizontally, or diagonally, the person who placed those marks wins.
+
+## Player Class
+When you run the tic_tac.py file you will be promtped for both players names. 
+
+An instance of the Player class will be instantiated for each of the two pllayers.
+
+The Player has a name (The names you enter into the intial prompts) and a team (Either X's or O's) attribute. 
+
+## 

@@ -1,4 +1,5 @@
 from player import Player
+import sys, traceback
 
 # Global constants:
 
@@ -62,9 +63,8 @@ def display_board():
         print(row)
 
 def handle_turn(player):
-    global player_one_name, current_player, full_board
+    global current_player
     try:
-
         display_board()
 
         position =  """
@@ -86,7 +86,7 @@ def handle_turn(player):
 
     except ValueError:
         print(f"Ahem. Close, but not quite. Pick yourself up, dust yourself off and try that again") 
-        handle_turn(player_one_name) 
+        handle_turn(current_player) 
 
 # Seeing if the player made a valid placement choice for their marker
 def check_position(position):

@@ -1,6 +1,8 @@
 # tic-tac-toe
 
-Board is diplayed in a 3 X 3 pattern.
+This is a game played in your command line. I wrote it in python 3. 
+
+The game board is diplayed in a 3 X 3 pattern which I build by nesting three lists inside of a list.
 
 The board spots are labeled left to right, top to bottom. Like so:
 

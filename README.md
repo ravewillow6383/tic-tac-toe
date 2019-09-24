@@ -56,3 +56,15 @@ The Player has a name (The names you enter into the intial prompts) and a team (
 * Checks position integer passed into the function to see if it is within the range of 0 and 8, which are the indices available for use in the game board
 * Checks position integer passed into the function against cooresponding numerical position on the game board to see if the spot is available for play
 * If the position is not in range or the position chosen is already in use by another mark, a ValueError is raised
+
+
+### flip_player()
+
+* Takes in both of the players as arguments
+* uses global variables current_player and turns
+* if player one is current pllayer, then player two becomes current player and visa versa. 
+
+### check_rows(), check_columns(), check_diagonals()
+
+* Uses global variables board, winner, game_is_still_going
+* 

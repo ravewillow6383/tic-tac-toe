@@ -159,8 +159,8 @@ def check_rows(player_one, player_two):
 
 def check_columns(player_one, player_two):
 
-    global board, winner, player_one_name, game_is_still_going, player_one_team, player_two_name, player_two_team
-
+    global board, winner, game_is_still_going
+    
     column_one = board[0][0] == board[1][0] == board[2][0] != '-'
     column_two = board[0][1] == board[1][1] == board[2][1] != '-'
     column_three = board[0][2] == board[1][2] == board[2][2] != '-'

@@ -40,7 +40,7 @@ def intro():
             Would you like to be an X or an O? 
         ***********************************************       
         """
-    player_one_team = str(input(team_prompt))
+    player_one_team = str(input(team_prompt)).upper()
     
     if len(player_one_team) > 1:
         print('That is too many characters for tic tac toe.')

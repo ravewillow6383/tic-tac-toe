@@ -1,3 +1,5 @@
+from player import Player
+
 # Global constants:
 
 columns = 3
@@ -9,6 +11,7 @@ player_two_name = ''
 player_one_team = ''
 player_two_team = ''
 current_player = ''
+
 
 # setting up a game board
 board = [['-' for n in range(columns)] for n in range (rows)]
@@ -48,18 +51,18 @@ def intro():
 
     current_player = player_one_team
 
-    if player_one_team != 'x' and player_one_team != 'X':
+    if player_one_team != 'X':
         player_two_team = 'X'
     else:
         player_two_team = 'O'
+
 
 def display_board():
     for row in board:
         print(row)
 
 def handle_turn(player):
-    global player_one_name, current_player
-
+    global player_one_name, current_player, full_board
     try:
 
         display_board()
@@ -110,42 +113,27 @@ def handle_turn(player):
         else:
             raise ValueError('please enter a whole number between 1-9')
     except ValueError:
-        print(f"Ahem. Close, {player_one_name}, but not quite. Pick yourself up, dust yourself off and try that again") 
+        print(f"Ahem. Close, but not quite. Pick yourself up, dust yourself off and try that again") 
         handle_turn(player_one_name) 
 
-def flip_player():
+def flip_player(player_one, player_two):
 
-    global current_player, player_one_team, player_two_team, player_one_name, player_two_name
+    global current_player
 
-    if current_player == player_one_team:
-        current_player = player_two_team
-        print(f'{player_two_name}, it is your turn!')
-    elif current_player == player_two_team:
-        current_player = player_one_team  
-        print(f'Your turn to play, {player_one_name}')
+    if current_player == player_one.team:
+        current_player = player_two.team
+        print(f'{player_two.name}, it is your turn!')
+    elif current_player == player_two.team:
+        current_player = player_one.team  
+        print(f'Your turn to play, {player_one.name}')
 
-def check_rows():
+def check_rows(player_one, player_two):
 
-    global board, winner, player_one_name, game_is_still_going, player_one_team, player_two_name, player_two_team
+    global board, winner, game_is_still_going
 
     row_one = board[0][0] == board[0][1] == board[0][2] != '-'
     row_two = board[1][0] == board[1][1] == board[1][2] != '-'
     row_three = board[2][0] == board[2][1] == board[2][2] != '-'
-
-    for j in range(0, 3):
-        full_board = None
-        for i in range(0, 3):
-            if board[j][i] == '-':
-                full_board = False
-                break
-            else:
-                full_board = True
-
-    if full_board == True:
-        display_board
-        print('There are no more spots!')
-        winner = None
-        game_is_still_going = False
             
     # if winner, change the game is still going on flag
     if row_one or row_two or row_three:
@@ -153,34 +141,34 @@ def check_rows():
         game_is_still_going = False
 
     if row_one:
-        if board[0][0] == player_one_team:
-            winner = player_one_name
-        elif board[0][0] == player_two_team:
-            winner = player_two_name
+        if board[0][0] == player_one.team:
+            winner = player_one.name
+        elif board[0][0] == player_two.team:
+            winner = player_two.name
         else:
             winner = None
 
     if row_two:
-        if board[1][0] == player_one_team:
-            winner = player_one_name
-        elif board[1][0] == player_two_team:
-            winner = player_two_name
+        if board[1][0] == player_one.team:
+            winner = player_one.name
+        elif board[1][0] == player_two.team:
+            winner = player_two.name
 
         else:
             winner = None
 
     if row_three:
-        if board[2][0] == player_one_team:
-            winner = player_one_name
-        elif board[2][0] == player_two_team:
-            winner = player_two_name
+        if board[2][0] == player_one.team:
+            winner = player_one.name
+        elif board[2][0] == player_two.team:
+            winner = player_two.name
         else:
             winner = None
 
     return winner
 
 
-def check_columns():
+def check_columns(player_one, player_two):
 
     global board, winner, player_one_name, game_is_still_going, player_one_team, player_two_name, player_two_team
 
@@ -194,34 +182,43 @@ def check_columns():
         game_is_still_going = False
 
     if column_one:
-        if board[0][0] == player_one_team:
-            winner = player_one_name
-        elif board[0][0] == player_two_team:
-            winner = player_two_name
+        # check_who_won(player_one, player_two, 0, 0)
+        if board[0][0] == player.one.team:
+            winner = player_one.name
+        elif board[0][0] == player_two.team:
+            winner = player_two.name
         else:
             winner = None
 
     if column_two:
-        if board[0][1] == player_one_team:
-            winner = player_one_name
-        elif board[0][1] == player_two_team:
-            winner = player_two_name
+        if board[0][1] == player_one.team:
+            winner = player_one.name
+        elif board[0][1] == player_two.team:
+            winner = player_two.name
         else:
             winner = None
 
     if column_three:
-        if board[0][2] == player_one_team:
-            winner = player_one_name
-        elif board[0][2] == player_two_team:
-            winner = player_two_name
+        if board[0][2] == player_one.team:
+            winner = player_one.name
+        elif board[0][2] == player_two.team:
+            winner = player_two.name
         else:
             winner = None
 
     return winner
 
-def check_diagonals():
+def check_who_won(player_one, player_two, pos1, pos2):
+    if board[pos1][pos2] == player.one.team:
+            winner = player_one_name
+    elif board[pos1][pos2] == player_two.team:
+        winner = player_two.name
+    else:
+        winner = None
 
-    global board, winner, player_one_name, game_is_still_going, player_one_team, player_two_name, player_two_team
+def check_diagonals(player_one, player_two):
+
+    global board, winner, game_is_still_going
 
     diagonals_one = board[0][0] == board[1][1] == board[2][2] != '-'
     diagonals_two = board[0][2] == board[1][1] == board[2][0] != '-'
@@ -230,25 +227,26 @@ def check_diagonals():
     if diagonals_one or diagonals_two:
         display_board()
         game_is_still_going = False
-        if board[1][1] == player_one_team:
-            winner = player_one_name
-        elif board[1][1] == player_two_team:
-            winner = player_two_name
+        if board[1][1] == player_one.team:
+            winner = player_one.name
+        elif board[1][1] == player_two.team:
+            winner = player_two.name
         else:
             winner = None
+
     return winner
 
-def check_for_win():
+def check_for_win(player_one, player_two):
     global winner 
 
     #check rows
-    row_winner = check_rows()
+    row_winner = check_rows(player_one, player_two)
     
     #check columns
-    column_winner = check_columns()
+    column_winner = check_columns(player_one, player_two)
 
     #check diagonals
-    diagonal_winner = check_diagonals()
+    diagonal_winner = check_diagonals(player_one, player_two)
 
     if row_winner:
         winner = diagonal_winner
@@ -278,8 +276,8 @@ def play_again():
         sys.exit(0)   
 
 # Get it started
-def play_game():
-    global board, player_one_name, player_two_name
+def play_game(player_one, player_two):
+    global board
 
     try: 
         while game_is_still_going:
@@ -288,18 +286,18 @@ def play_game():
             handle_turn(current_player)
 
             # check if the game is over
-            check_for_win()
+            check_for_win(player_one, player_two)
 
             # flip to the other player
-            flip_player()
+            flip_player(player_one, player_two)
 
         #Handle a winner
-        if winner == player_one_name or winner == player_two_name:
+        if winner == player_one.name or winner == player_two.name:
             print(f'They’ve done studies, you know. 60 percent of the time, it works every time. Well done, {winner}. You sure nailed your x\'s and o\'s.' )
             play_again()
         # Handle a tie
-        if winner != player_one_name and winner != player_two_name:
-            print(f' I\'m pretty sure there\'s a lot more to life than being really, really, ridiculously good at tic-tac-toe, but that was sure a fine match. {player_one_name}, {player_two_name}, it was a draw. ')
+        if winner != player_one.name and winner != player_two.name:
+            print(f' I\'m pretty sure there\'s a lot more to life than being really, really, ridiculously good at tic-tac-toe, but that was sure a fine match. {player_one.name}, {player_two.name}, it was a draw. ')
             play_again()
 
     except KeyboardInterrupt:
@@ -308,6 +306,11 @@ def play_game():
 
 def lets_roll():
     intro()
-    play_game()
+
+    #Create new instances of Player class
+    player_one = Player(player_one_name, player_one_team)
+    player_two = Player(player_two_name, player_two_team)
+
+    play_game(player_one, player_two)
 
 lets_roll()

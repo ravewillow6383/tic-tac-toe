@@ -51,6 +51,11 @@ def intro():
         ***********************************************       
         """
     player_one_team = str(input(team_prompt))
+    
+    if len(player_one_team) > 1:
+        print('That is too many characters for tic tac toe.')
+        lets_roll()
+
     current_player = player_one_team
 
     if player_one_team != 'x' and player_one_team != 'X':
@@ -285,26 +290,31 @@ def play_again():
 # Get it started
 def play_game():
     global board, player_one_name, player_two_name
-    
-    while game_is_still_going:
 
-        # handle a single game for a player
-        handle_turn(current_player)
+    try: 
+        while game_is_still_going:
 
-        # check if the game is over
-        check_for_win()
+            # handle a single game for a player
+            handle_turn(current_player)
 
-        # flip to the other player
-        flip_player()
+            # check if the game is over
+            check_for_win()
 
-    #Handle a winner
-    if winner == player_one_name or winner == player_two_name:
-        print(f'They’ve done studies, you know. 60 percent of the time, it works every time. Well done, {winner}. You sure nailed your x\'s and o\'s.' )
-        play_again()
-    # Handle a tie
-    if winner != player_one_name and winner != player_two_name:
-        print(f' I\'m pretty sure there\'s a lot more to life than being really, really, ridiculously good at tic-tac-toe, but that was sure a fine match. {player_one_name}, {player_two_name}, it was a draw. ')
-        play_again
+            # flip to the other player
+            flip_player()
+
+        #Handle a winner
+        if winner == player_one_name or winner == player_two_name:
+            print(f'They’ve done studies, you know. 60 percent of the time, it works every time. Well done, {winner}. You sure nailed your x\'s and o\'s.' )
+            play_again()
+        # Handle a tie
+        if winner != player_one_name and winner != player_two_name:
+            print(f' I\'m pretty sure there\'s a lot more to life than being really, really, ridiculously good at tic-tac-toe, but that was sure a fine match. {player_one_name}, {player_two_name}, it was a draw. ')
+            play_again()
+
+    except KeyboardInterrupt:
+        print('Thanks for playing!')
+        sys.exit(0)  
 
 def lets_roll():
     intro()

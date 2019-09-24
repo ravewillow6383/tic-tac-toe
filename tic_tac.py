@@ -13,6 +13,10 @@
 columns = 3
 rows = 3
 game_is_still_going = True
+winner = None
+current_player = 'X'
+player_name = ''
+
 # setting up a game board
 board = [['-' for n in range(columns)] for n in range (rows)]
 
@@ -20,8 +24,22 @@ def display_board():
     for row in board:
         print(row)
 
-def handle_turn():
+def handle_turn(player):
+    global player_name
+
     try:
+
+        name_prompt = """
+        *****************************************
+        Hello, engineers and employees of Rubica. 
+        Please enter your name here and we'll get 
+        this party started:
+        *****************************************       
+        """
+        player_name = str(input(name_prompt))
+
+        display_board()
+
         position =  """
         **************************************
         **    Try your luck at tic tac toe! **
@@ -47,10 +65,9 @@ def handle_turn():
             board[2][position] = 'X'
         elif position < 0 or position > 8:
             raise ValueError('please enter a whole number between 1-9')
-        display_board()
-    except ValueError:
-        print('Ahem. Close, but not quite. Pick yourself up, dust yourself off and try that one again.') 
-        handle_turn() 
+    except:
+        print(f"Ahem. Close, {player_name}, but not quite. Pick yourself up, dust yourself off and try that again") 
+        handle_turn(player_name) 
 
 def flip_player():
     return
@@ -70,6 +87,7 @@ def check_if_game_over():
     check_for_tie()      
 
 def play_game():
+
     try:
 
         while game_is_still_going:
@@ -79,6 +97,9 @@ def play_game():
             check_if_game_over()
 
             flip_player()
+
+        if winner is not None:
+            print('')
     
     except KeyboardInterrupt:
         print('Don\'t quit on me now!')

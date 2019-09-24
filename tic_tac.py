@@ -86,11 +86,76 @@ def handle_turn(player):
 def flip_player():
     return
 
-def check_for_win():
-    #check rows
-    #check columns
-    #check diagonals
+def check_rows():
+
+    global board, winner, game_is_still_going
+
+    row_one = board[0][0] == board[0][1] == board[0][2] != '-'
+    row_two = board[1][0] == board[1][1] == board[1][2] != '-'
+    row_three = board[2][0] == board[2][1] == board[2][2] != '-'
+
+    # if winner, change the game is still going on flag
+    if row_one or row_two or row_three:
+        game_is_still_going = False
+
+    if row_one:
+        return board[0][0]
+
+    if row_two:
+        return board[1][0]
+
+    if row_three:
+        return board[2][0]
+
+
+def check_columns():
+    global board, game_is_still_going
+    winning_column = ''
+    column_one = board[0][0] == board[1][0] == board[2][0] != '-'
+    column_two = board[0][1] == board[1][1] == board[2][1] != '-'
+    column_three = board[0][2] == board[1][2] == board[2][2] != '-'
+
+    # if winner, change the game is still going on flag
+    if column_one or column_two or column_three:
+        game_is_still_going = False
+
+    if column_one:
+        return board[0][0]
+
+    if column_two:
+        return board[0][1]
+
+    if column_three:
+        return board[0][2]
+
     return
+
+def check_diagonals():
+    return
+
+def check_for_win():
+    global winner 
+
+    #check rows
+    row_winner = check_rows()
+    
+    #check columns
+    column_winner = check_columns()
+
+    #check diagonals
+    diagonal_winner = check_diagonals()
+
+    if row_winner:
+        winner = diagonal_winner
+
+    elif column_winner:
+        winner = column_winner
+
+    elif diagonal_winner:
+        winner = diagonal_winner
+    
+    else:
+        winner = None
 
 def check_for_tie():
     return
@@ -100,22 +165,38 @@ def check_if_game_over():
     check_for_win()
     check_for_tie()      
 
+# Get it started
 def play_game():
-
+    global board, columns, rows, player_name
+    
     while game_is_still_going:
 
+        # handle a single game for a player
         handle_turn(current_player)
 
+        # check if the game is over
         check_if_game_over()
 
+        # flip to the other player
         flip_player()
 
+    #Handle a winner
     if winner is not None:
-        print('')
+        print(f'They’ve done studies, you know. 60 percent of the time, it works every time. Well done, {player_name}')
     
-    # Display initial board
-    # display_board()
-
+    # Handle a tie
+    if winner == None:
+        print(f' I\'m pretty sure there\'s a lot more to life than being really, really, ridiculously good at tic-tac-toe. And I plan on finding out what that is.')
+        again_prompt = 'Would you like to play again?'
+        again = input(again_prompt)
+      
+    if again.lower() == 'y' or again.lower() == 'yes':
+        board = [['-' for n in range(columns)] for n in range (rows)]
+        play_game()
+      
+    if again.lower() == 'n' or again.lower() == 'no':
+        print(f'Thanks for the game, {player_name}.')
+        sys.exit(0)   
 
 if __name__ == '__main__':
     intro()

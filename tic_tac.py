@@ -12,7 +12,7 @@
 
 columns = 3
 rows = 3
-
+game_is_still_going = True
 # setting up a game board
 board = [['-' for n in range(columns)] for n in range (rows)]
 
@@ -49,8 +49,21 @@ def handle_turn():
             raise ValueError('please enter a whole number between 1-9')
         display_board()
     except ValueError:
-        print('Ahem. Pick yourself up, dust yourself off and try that one again.') 
+        print('Ahem. Close, but not quite. Pick yourself up, dust yourself off and try that one again.') 
         handle_turn() 
+
+def flip_player():
+    return
+
+def check_for_win():
+    #check rows
+    #check columns
+    #check diagonals
+    return
+
+def check_for_tie():
+    return
+
 
 def check_if_game_over():
     check_for_win()

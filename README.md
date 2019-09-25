@@ -4,7 +4,7 @@ Author: Raven W. Robertson 09/2019
 
 This is a game played in your command line written in Python 3.7.3. 
 
-The game board is displayed in a 3 X 3 pattern of nested lists which I built utilizing Pythons List comprehension.
+The game board is displayed in a 3 X 3 pattern of nested lists which I built utilizing Pythons List comprehension. I'm using lists as my game board not only because it is aesthetically suited for a tic-tac-toe game board, but because we are able to look up the value of a list if we know which index that we are looking for in constant time, which gives us a time complexity of O(1).
 
 The board spots are labeled left to right, top to bottom. Like so:
 

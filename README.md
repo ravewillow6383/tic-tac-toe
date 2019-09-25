@@ -1,5 +1,7 @@
 # tic-tac-toe
 
+Author: Raven W. Robertson 09/2019
+
 This is a game played in your command line written in Python 3.7.3. 
 
 The game board is diplayed in a 3 X 3 pattern of nested lists which I built utilizing Pythons List comprehension.
@@ -64,7 +66,69 @@ The Player has a name (The names you enter into the intial prompts) and a team (
 * uses global variables current_player and turns
 * if player one is current pllayer, then player two becomes current player and visa versa. 
 
+
 ### check_rows(), check_columns(), check_diagonals()
 
-* Uses global variables board, winner, game_is_still_going
-* 
+* Uses global variables: board, winner, game_is_still_going
+* checks for a matching value in list indices:
+    * check_rows(): horizontally 
+    * check_columns(): vertically
+    * check_diagonals(): diagonally
+* calls check_who_won() function on whichever row, column or diagonal had a match
+* returns winner
+* changes the game_is_still_going flag to False to break the game play loop
+
+
+### check_who_won()
+
+* uses global variable: winner
+* takes in four arguments:
+    * player one
+    * player two
+    * position one (which nested list the winning combination was in)
+    * position number two (which indice of the above nested list the held the value of the winning team)
+* checks value at given coordinates (position one and position two) to see which player won
+
+
+### check_for_win()
+
+* Uses global variables: winner, game_is_still_going, turns 
+* Takes in two arguments
+    * player one
+    * player two
+* Checks to see if the game board is full
+* Checks to see if there is any winner returned from our check rows, columns or diagonals by calling each of those function
+
+
+### play_again()
+
+* uses global variables: game_is_still_going and board
+* prompts the player asking if they want to play again
+* if they do, resets game board and game is still going flag and calls the lets_roll() to get the game started again
+* if player does not want to play again, it says goodbye and calls a sys.exit(0) for a clean exit into the command line. 
+
+
+### play_game()
+
+* takes in two arguments:
+    * player one
+    * player two
+* in a try block:
+    * creates a while loop that goes as long as our game is still going flag is set to True
+    * calls handle_turn() on current player
+    * calls check_for_win()
+    * calls flip_player()
+    * conditional:
+        * if winner prints out winner script
+        * if tie prints out tie script
+    * calls play_again()
+* in an except block:
+    * handles KeyboardInterrupt
+    * calls sys.exit(0) for clean exit
+
+
+## lets_roll()
+* calls intro
+* creates two instances of Player class based on input gathered in intro()
+* calls play_game()
+

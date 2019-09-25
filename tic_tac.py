@@ -160,7 +160,7 @@ def check_rows(player_one, player_two):
 def check_columns(player_one, player_two):
 
     global board, winner, game_is_still_going
-    
+
     column_one = board[0][0] == board[1][0] == board[2][0] != '-'
     column_two = board[0][1] == board[1][1] == board[2][1] != '-'
     column_three = board[0][2] == board[1][2] == board[2][2] != '-'
@@ -197,6 +197,20 @@ def check_diagonals(player_one, player_two):
 
     return winner
 
+#If there is a winner, was it X's or O's?
+def check_who_won(player_one, player_two, pos1, pos2):
+    global winner
+
+    if board[pos1][pos2] == player_one.team:
+        winner = player_one.name
+
+    elif board[pos1][pos2] == player_two.team:
+        winner = player_two.name
+
+    else:
+        winner = None
+
+#checks to see if there's a winner yet        
 def check_for_win(player_one, player_two):
     global winner, game_is_still_going, turns 
 
@@ -228,18 +242,6 @@ def check_for_win(player_one, player_two):
     else:
         winner = None
 
-#If there is a winner, was it X's or O's?
-def check_who_won(player_one, player_two, pos1, pos2):
-    global winner
-
-    if board[pos1][pos2] == player_one.team:
-        winner = player_one.name
-
-    elif board[pos1][pos2] == player_two.team:
-        winner = player_two.name
-
-    else:
-        winner = None
   
 # ask if player wants to play again
 def play_again():
@@ -261,8 +263,8 @@ def play_again():
 
 # Get it started
 def play_game(player_one, player_two):
-    global board
-
+    global board, game_is_still_going
+    
     try: 
         while game_is_still_going:
 

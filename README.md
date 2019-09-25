@@ -26,7 +26,7 @@ My MVP for this game was simply to build a playable, functional tic tac toe game
 
 ### What I like about this program
 
-It plays cleanly in my console. I have error handling and I'm checking for edge cases (i.e. integers given by the user that are outside of range, a blank input for a user name, a string instead of an integer for the game board placement). It does everything that I would expect a tic tac toe game to do.
+It plays cleanly in my console. It has a retro feel that I enjoy. I have error handling and I'm checking for edge cases (i.e. integers given by the user that are outside of range, a blank input for a user name, a string instead of an integer for the game board placement) and I've tried a lot of weird inputs without it breaking. It does everything that I would expect a tic tac toe game to do.
 
 ### Where I would take this project further
 

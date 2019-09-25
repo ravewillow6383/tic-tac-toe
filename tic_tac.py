@@ -38,6 +38,10 @@ def intro():
     player_one_name = str(input(player_one_name))
     player_two_name = str(input(player_two_name))
 
+    if len(player_one_name) < 1 or len(player_two_name) < 1:
+        print('Come on, Rubica. Give me something here.')
+        lets_roll()
+
     team_prompt = """
         **********************************************
               Player One, You will go first! 
@@ -45,6 +49,9 @@ def intro():
         ***********************************************       
         """
     player_one_team = str(input(team_prompt)).upper()
+
+    if player_one_team != 'X' and player_one_team != 'O':
+        print(f'I like your rebellion. Have it your way, {player_one_name}. You are team {player_one_team}. But your friend is still an O.')
     
     if len(player_one_team) > 1:
         print('That is too many characters for tic tac toe.')
@@ -127,7 +134,8 @@ def flip_player(player_one, player_two):
 
     if current_player == player_one.team:
         current_player = player_two.team
-        print(f'{player_two.name}, it is your turn!')
+        if turns < 8:
+            print(f'{player_two.name}, it is your turn!')
 
     elif current_player == player_two.team:
         current_player = player_one.team  
@@ -215,7 +223,6 @@ def check_for_win(player_one, player_two):
     global winner, game_is_still_going, turns 
 
     #Check if gameboard if full for tie
-    print(turns)
     if turns == 9:
         game_is_still_going = False
         print('The game board is full!')
@@ -245,7 +252,7 @@ def check_for_win(player_one, player_two):
   
 # ask if player wants to play again
 def play_again():
-    global game_is_still_going, board
+    global game_is_still_going, board, turns
 
     again_prompt = 'Would you like to play again?'
     again = input(again_prompt)
@@ -255,6 +262,7 @@ def play_again():
         board = [['-' for n in range(columns)] for n in range (rows)]
         # Reset game is going flag
         game_is_still_going = True
+        turns = 1
         lets_roll()
       
     if again.lower() == 'n' or again.lower() == 'no':
@@ -264,7 +272,7 @@ def play_again():
 # Get it started
 def play_game(player_one, player_two):
     global board, game_is_still_going
-    
+
     try: 
         while game_is_still_going:
 

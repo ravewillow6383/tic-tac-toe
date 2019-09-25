@@ -4,7 +4,7 @@ Author: Raven W. Robertson 09/2019
 
 This is a game played in your command line written in Python 3.7.3. 
 
-The game board is diplayed in a 3 X 3 pattern of nested lists which I built utilizing Pythons List comprehension.
+The game board is displayed in a 3 X 3 pattern of nested lists which I built utilizing Pythons List comprehension.
 
 The board spots are labeled left to right, top to bottom. Like so:
 
@@ -16,15 +16,15 @@ The board spots are labeled left to right, top to bottom. Like so:
 
 This is a two player game. Each player chooses where they would like to place their mark. Once three matching marks are found, either vertically, horizontally, or diagonally, the person who placed those marks wins.
 
-I've imported sys and traceback to allow for a clean Quit from the game upon completion or Keyboard interupt.
+I've imported sys and traceback to allow for a clean Quit from the game upon completion or Keyboard interrupt.
 
 ## Player Class
 
-When you run the tic_tac.py file you will be promtped for both players names. 
+When you run the tic_tac.py file you will be prompted for both players names. 
 
-An instance of the Player class will be instantiated for each of the two pllayers.
+An instance of the Player class will be instantiated for each of the two players.
 
-The Player has a name (The names you enter into the intial prompts) and a team (Either X's or O's) attribute. 
+The Player has a name (The names you enter into the initia prompts) and a team (Either X's or O's) attribute. 
 
 
 ## Functions 
@@ -48,13 +48,13 @@ The Player has a name (The names you enter into the intial prompts) and a team (
 * This function takes in one argument; the player who's turn it is currently.
 * Takes one global variable: current_player
 * It calls the display board function to show the current player which spots are available to play
-* In a try block we prompt the current player to choose a number coorelating with the spot they want to mark
+* In a try block we prompt the current player to choose a number that coorelates with the spot they want to mark
 * Calls the check_position() function to check availability and validity of the players numerical choice.
 * Except block catches Value error in case of a numerical choice that is too high or too low.
 
 ### check_position()
 
-* Takes in one argument; the integer position on the game board that has been choosen by the current player. 
+* Takes in one argument; the integer position on the game board that has been chosen by the current player. 
 * Checks position integer passed into the function to see if it is within the range of 0 and 8, which are the indices available for use in the game board
 * Checks position integer passed into the function against cooresponding numerical position on the game board to see if the spot is available for play
 * If the position is not in range or the position chosen is already in use by another mark, a ValueError is raised
@@ -64,7 +64,7 @@ The Player has a name (The names you enter into the intial prompts) and a team (
 
 * Takes in both of the players as arguments
 * uses global variables current_player and turns
-* if player one is current pllayer, then player two becomes current player and visa versa. 
+* if player one is current player, then player two becomes current player and visa versa. 
 
 
 ### check_rows(), check_columns(), check_diagonals()
@@ -86,7 +86,7 @@ The Player has a name (The names you enter into the intial prompts) and a team (
     * player one
     * player two
     * position one (which nested list the winning combination was in)
-    * position number two (which indice of the above nested list the held the value of the winning team)
+    * position number two (which of the indices of the above nested list the held the value of the winning team)
 * checks value at given coordinates (position one and position two) to see which player won
 
 
@@ -104,7 +104,8 @@ The Player has a name (The names you enter into the intial prompts) and a team (
 
 * uses global variables: game_is_still_going and board
 * prompts the player asking if they want to play again
-* if they do, resets game board and game is still going flag and calls the lets_roll() to get the game started again
+* if they do, resets game board, reset turn count and reset game_is_still_going flag. 
+* calls the lets_roll() to get the game started again
 * if player does not want to play again, it says goodbye and calls a sys.exit(0) for a clean exit into the command line. 
 
 

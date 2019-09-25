@@ -36,10 +36,10 @@ I have a few thoughts. I would either expand the Player class, adding in attribu
 I would also build up a game_board class and move many of my functiodns into the class as methods. 
 
 
-My other thought, depending on how wild we wanted to get with a tic tac toe game, was to build a django app out of it. Then, I could build up a player model and a game board model, store instances of the Player in a database and then use an ORM (object relational mapping), to interact with out database in our code. We could add a self.rank attribute to the player class and increase the rank when the player hits a certain number of wins. We could have a lot of fun with it.
+Possibly to build a django app out of it. Then, I could build up a player model and a game board model, store instances of the Player in a database and then use an ORM (object relational mapping), to interact with out database in our code. We could add a self.rank attribute to the player class and increase the rank when the player hits a certain number of wins. We could have a lot of fun with it.
 
 
-On that note, with programming, I feel that it quickly becomes easy to go into a rabbit hole of continously building on my code, making it more exciting and intericate and I truly love doing it. However, I don't want to lose the opportunity to interview with a company that I would like to work with because I ended up lost down a rabbit hole of building up ranks for tick tac toe players and consequently, didn't finish in a timely enough way. So, for now, here is my MVP built in about a day, with breaks for a few meetings and meals. If anyone would like to have expand upon this game in any of they ways that I have mentioned or any other way, I'm open and available to code for fun and/or code for hire. 
+For now, here is my MVP built in about a day. If anyone would like to have expand upon this game in any of they ways that I have mentioned or any other way, I'm open and available to code for fun and/or code for hire. 
 
 Thank you for your time. I hope you enjoy the game!
 

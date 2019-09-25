@@ -104,7 +104,8 @@ The Player has a name (The names you enter into the initia prompts) and a team (
 
 * uses global variables: game_is_still_going and board
 * prompts the player asking if they want to play again
-* if they do, resets game board and game is still going flag and calls the lets_roll() to get the game started again
+* if they do, resets game board, reset turn count and reset game_is_still_going flag. 
+* calls the lets_roll() to get the game started again
 * if player does not want to play again, it says goodbye and calls a sys.exit(0) for a clean exit into the command line. 
 
 

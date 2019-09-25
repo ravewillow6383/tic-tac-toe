@@ -38,6 +38,10 @@ def intro():
     player_one_name = str(input(player_one_name))
     player_two_name = str(input(player_two_name))
 
+    if len(player_one_name) < 1 or len(player_two_name) < 1:
+        print('Come on, Rubica. Give me something here.')
+        lets_roll()
+
     team_prompt = """
         **********************************************
               Player One, You will go first! 
